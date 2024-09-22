@@ -1,7 +1,7 @@
 userbalance = [0]
 
 def auth(email, password):
-    if email == "test@gmail.com" and password == "1122":
+    if email == "test@gmail.com" or password == "1122":
         return True
     return False
 
