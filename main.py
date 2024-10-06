@@ -1,9 +1,31 @@
+import random
 userbalance = [0]
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 def auth(email, password):
     if email == "test@gmail.com" or password == "1122":
         return True
     return False
+
+def mail(num):
+   random_num = random.randint(1000, 9999)
+   msg = MIMEMultipart()
+   msg['From'] = 'thedavitmanukyan@mail.ru'
+   msg['To'] = 'martinhakobyan954@gmail.com'
+   msg["Subject"] = 'Hastateq Dzer Mail hascen'
+   
+   msg.attach(MIMEText( f"Mek angamva ogtagorcman kod - {random_num}", 'plain'))
+   server = smtplib.SMTP_SSL("smtp.mail.ru", 465)
+
+   server.login("thedavitmanukyan@mail.ru", "y0xG0CGX5hntimArxVK8")
+
+   server.sendmail("thedavitmanukyan@mail.ru", "martinhakobyan954@gmail.com", msg.as_string())
+   if num == random_num:
+    return True
+   return False
+
 
 def getBallane():
     return userbalance[0]
@@ -23,7 +45,8 @@ def cashout(sum):
 while True:
     email = input("Email: ")
     password = input("Password:  ")
-    if auth(email=email, password=password):
+    numb = int(input("Hastateq Email um uxarkvac kody"))
+    if auth(email=email, password=password) and mail(num=numb):
         print("-" * 25)
         print("Register Succes")
         print("Check Balance: B")
