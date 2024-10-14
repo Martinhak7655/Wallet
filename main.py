@@ -34,7 +34,8 @@ def grancum(email, password, verification):
         mail()
         users_grancum = {
             "mail": email,
-            "password": password
+            "password": password,
+            "balance": userbalance[0]
         }
         users.append(users_grancum)
         if verification == random_num:
@@ -48,7 +49,8 @@ def mutqgorcel(password2):
     return False
 
 def getBallane():
-    return userbalance[0]
+    for user in users:
+        return user["balance"]
 
 def cashin(sum):
     if sum <= 100:
