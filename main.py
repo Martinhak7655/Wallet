@@ -61,6 +61,7 @@ def poxancum(sum, verify):
         if verify == user["id"]:
             print(random_id)
             user["balance"] += sum
+            userbalance[0] -= sum
             msg = MIMEMultipart()
             msg['From'] ="thedavitmanukyan@mail.ru"
             msg['To'] = "martinhakobyan954@gmail.com"
