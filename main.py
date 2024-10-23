@@ -28,11 +28,12 @@ def front(hastatum=None, hastatum2=None):
     elif hastatum2 == "mutq gorcel":
         return True
     return False
-
+random_id = random.randint(1000, 9999)
 def grancum(email, password, verification):
     if len(password) >= 8:
         mail()
         users_grancum = {
+            "id": random_id,
             "mail": email,
             "password": password,
             "balance": userbalance[0]
@@ -52,6 +53,25 @@ def getBallane():
     for user in users:
         return user["balance"]
 
+def poxancum(sum, verify):
+    print(random_id)
+    if sum <= 0:
+        return False
+    for user in users:
+        if verify == user["id"]:
+            print(random_id)
+            user["balance"] += sum
+            msg = MIMEMultipart()
+            msg['From'] ="thedavitmanukyan@mail.ru"
+            msg['To'] = "martinhakobyan954@gmail.com"
+            msg['Subject'] = "Dzer Hashivy"
+            msg.attach(MIMEText(f"Dzer Hashvic poxancvele user {user["id"]} ogtatirocin"))
+            server = smtplib.SMTP_SSL("smtp.mail.ru", 465)
+
+            server.login("thedavitmanukyan@mail.ru", "y0xG0CGX5hntimArxVK8")
+
+            server.sendmail("thedavitmanukyan@mail.ru", "martinhakobyan954@gmail.com", msg.as_string())
+
 def cashin(sum):
     if sum <= 100:
         return False
@@ -67,6 +87,31 @@ def cashin(sum):
 
     server.sendmail("thedavitmanukyan@mail.ru", "martinhakobyan954@gmail.com", msg.as_string())
     return True
+
+def front2(harc2=None, harc3=None):
+    if harc2 == "passwordy":
+        return True
+    elif harc3 == "maily":
+        return True
+    return False
+
+def popoxum(parol, verify):
+    print(random_id)
+    if len(parol) < 8:
+        return False
+    for user in users:
+        if verify == user["id"]:
+            user["password"] = parol
+            return True
+    return False
+
+def popoxum2(mail, verify):
+    print(random_id)
+    for user in users:
+        if verify == user["id"]:
+            user["mail"] = mail
+            return True
+    return False 
 
 def cashout(sum):
     if sum <= 0 and sum > userbalance[0]:
@@ -96,6 +141,8 @@ while True:
             print("Check Balance: B")
             print("Cashin command: +")
             print("Cashout command: -")
+            print("Poxancum: P")
+            print("Popoxum: R")
             print("Exit: E")
             print("-" * 25)
             while True:
@@ -114,9 +161,35 @@ while True:
                         print("Procces Succesed")
                     else:
                         print("An error try again")
+                elif command == "P":
+                    Sum = int(input("Poxancman gumary >>  "))
+                    Verify = int(input("Greq ogtatiroj idn"))
+                    if poxancum(sum=Sum, verify=Verify):
+                        print("Procces Succesed")
+                
+                elif command == "R":
+                    harcum = input("Cankanumeq popoxel passwordy te maily")
+                    if front2(harc2=harcum):
+                        Parol = input("Greq Dzer Popoxman Passwordy >>  ")
+                        Verify = int(input("Greq idn"))
+                        if popoxum(parol=Parol, verify=Verify):
+                            print("Procces Succesed")
+                        else:
+                            print("An Error Try Again")
+                    elif front2(harc3=harcum):
+                        Maily = input("Greq Dzer Popoxman Maily >>  ")
+                        Verify = int(input("Greq idn"))
+                        if popoxum2(mail=Maily, verify=Verify):
+                            print("Procces Succesed")
+                        else:
+                            print("An Error Try Again")
                 elif command == "E":
                     print("Exit")
                     break
+                else:
+                    print("-" * 25)
+                    print("Aydpisi command chka")
+                    print("-" * 25)
         else:
             print("-" * 25)
             print("Invalid Email or Password")
@@ -129,6 +202,8 @@ while True:
             print("Check Balance: B")
             print("Cashin command: +")
             print("Cashout command: -")
+            print("Poxancum: P")
+            print("Popoxum: R")
             print("Exit: E")
             print("-" * 25)
             while True:
@@ -147,6 +222,27 @@ while True:
                         print("Procces Succesed")
                     else:
                         print("An error try again")
+                elif command == "P":
+                    Sum = int(input("Poxancman gumary >>  "))
+                    Verify = int(input("Greq ogtatiroj idn"))
+                    if poxancum(sum=Sum, verify=Verify):
+                        print("Procces Succesed")
+                elif command == "R":
+                    harcum = input("Cankanumeq popoxel passwordy te maily")
+                    if front2(harc2=harcum):
+                        Parol = input("Greq Dzer Popoxman Passwordy >>  ")
+                        Verify = int(input("Greq idn"))
+                        if popoxum(parol=Parol, verify=Verify):
+                            print("Procces Succesed")
+                        else:
+                            print("An Error Try Again")
+                    elif front2(harc3=harcum):
+                        Maily = input("Greq Dzer Popoxman Maily >>  ")
+                        Verify = int(input("Greq idn"))
+                        if popoxum2(mail=Maily, verify=Verify):
+                            print("Procces Succesed")
+                        else:
+                            print("An Error Try Again")
                 elif command == "E":
                     print("Exit")
                     break
